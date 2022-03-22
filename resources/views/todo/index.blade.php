@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>My To Do List</h1>
+                <h1>{{ $name }}'s Lists</h1>
 
                 <div class="card">
                     <div class="card-body">
@@ -27,21 +27,28 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {{-- @foreach ($todos as $todo)
+                                    <tr>
+                                        <td>{{ $todo->name }}</td>
+                                        <td>{{ $todo->status }}</td>
+                                        <td><button class="btn btn-primary">Done</button></td>
+                                    </tr>
+                                @endforeach --}}
 
-                                <tr>
-                                    <td>Makan</td>
-                                    <td>Not Done</td>
-                                    <td><button class="btn btn-primary">Done</button></td>
-                                </tr>
-
-                                <tr>
-                                    <td>Minum</td>
-                                    <td>Not Done</td>
-                                    <td><button class="btn btn-primary">Done</button></td>
-                                </tr>
-
+                                @forelse ($todos as $todo)
+                                    <tr>
+                                        <td>{{ $todo->name }}</td>
+                                        <td>{{ $todo->status }}</td>
+                                        <td><button class="btn btn-primary">Done</button></td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="3">No Data Yet</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
+                        {{ $todos->links() }}
                     </div>
                 </div>
             </div>
